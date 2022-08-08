@@ -80,3 +80,13 @@ Finalmente ejecutar en el IntelliJ, si marca error hay que agregar el siguiente 
     </configuration>
 </plugin>
 ```
+
+
+
+## Respaldo de variables de entorno anteriores al curso
+C:\ProgramData\Oracle\Java\javapath
+
+C:\Program Files\Common Files\Oracle\Java\javapath
+
+### Creación de plantillas en IntelliJ
+Presionando Ctl + alt + s. Editor --> Live Templates --> New

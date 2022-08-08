@@ -16,7 +16,7 @@ import java.io.PrintWriter;
  * Nunca sobreescribiremos el método Service() sino los que son
  * doGet(), doPut(),etc.
  * */
-@WebServlet("/hola-mundo")
+@WebServlet("/hola")
 public class HolaMundoServlet extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
