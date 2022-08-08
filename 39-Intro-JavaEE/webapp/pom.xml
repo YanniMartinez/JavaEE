@@ -47,6 +47,14 @@
                     <password>12345</password>
                 </configuration>
             </plugin>
+            <!-- Maven War pluggin -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

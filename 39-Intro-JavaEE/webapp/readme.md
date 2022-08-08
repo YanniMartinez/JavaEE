@@ -53,3 +53,30 @@ Y finalmente añadimos la carpeta con los plugins para hacer uso de apache:
 
 ## Creación de carpeta para recursos web
 Una vez implementadas las dependencias y plugins hay que crear una carpeta dentro de src/main para almacenar todos los recursos web como HTML, CSS, JS. Vistas JSP.
+
+## Correr proyecto
+Para correr nuestro proyecto debemos irnos a `edit configurations` despues de darle en Run. **add new** --> **maven**:
+
+* name: tomcat7
+* Command Line:tomcat7:redeploy
+
+Y finalmente dar en **apply**.
+
+Veremos que ahora si nos da la opción de ejecutar nuestro server, pero antes de eso hay que levantar appache, para ello debemos abrir una terminal, buscar nuestro directorio donde almacenamos appache 10 y ejecutamos un comando como el siguiente:
+
+```
+cd tomcatPath/bin
+startup.bat
+```
+
+Finalmente ejecutar en el IntelliJ, si marca error hay que agregar el siguiente pluggin:
+```
+<!-- Maven War pluggin -->
+<plugin>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>3.3.2</version>
+    <configuration>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </configuration>
+</plugin>
+```
