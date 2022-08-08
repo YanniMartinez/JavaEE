@@ -51,3 +51,5 @@ Y finalmente añadimos la carpeta con los plugins para hacer uso de apache:
 </build>
 ```
 
+## Creación de carpeta para recursos web
+Una vez implementadas las dependencias y plugins hay que crear una carpeta dentro de src/main para almacenar todos los recursos web como HTML, CSS, JS. Vistas JSP.
