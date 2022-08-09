@@ -32,7 +32,10 @@ public class ParametroGetServlet extends HttpServlet {
 
         } else if(saludo != null){
             out.print("        <h2>El saludo enviado es: " + saludo + "</h2");
-        } else{
+        } else if(nombre != null){
+            out.print("        <h2>Hola mi nombre es: " + nombre + "</h2>");
+        }
+        else{
             out.print("        <h2>No se han pasado Parametros");
         }
         out.print("    </body>");
