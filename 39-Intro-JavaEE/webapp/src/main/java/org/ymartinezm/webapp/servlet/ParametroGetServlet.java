@@ -18,7 +18,7 @@ public class ParametroGetServlet extends HttpServlet {
 
         //Obteniendo el parametro que viene con ese nombre en la URL
         String saludo = req.getParameter("saludo");
-
+        String nombre = req.getParameter("nombre");
         out.print("<!DOCTYPE html>");
         out.print("<html>");
         out.print("    <head>");
@@ -27,7 +27,14 @@ public class ParametroGetServlet extends HttpServlet {
         out.print("    </head>");
         out.print("    <body>");
         out.print("        <h1>Parametro de la URL</h1>");
-        out.print("         <h2>El saludo enviado es: " + saludo + "</h2");
+        if( saludo != null && nombre != null){
+            out.print("        <h2>El saludo enviado es: " + saludo +  " " + nombre + "</h2");
+
+        } else if(saludo != null){
+            out.print("        <h2>El saludo enviado es: " + saludo + "</h2");
+        } else{
+            out.print("        <h2>No se han pasado Parametros");
+        }
         out.print("    </body>");
         out.print("</html>");
 
