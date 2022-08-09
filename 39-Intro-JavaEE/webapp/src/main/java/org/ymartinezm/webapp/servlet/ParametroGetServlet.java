@@ -19,6 +19,7 @@ public class ParametroGetServlet extends HttpServlet {
         //Obteniendo el parametro que viene con ese nombre en la URL
         String saludo = req.getParameter("saludo");
         String nombre = req.getParameter("nombre");
+
         out.print("<!DOCTYPE html>");
         out.print("<html>");
         out.print("    <head>");
@@ -37,6 +38,13 @@ public class ParametroGetServlet extends HttpServlet {
         }
         else{
             out.print("        <h2>No se han pasado Parametros");
+        }
+
+        try {
+            int codigo = Integer.parseInt(req.getParameter("codigo"));
+            out.println("<br> <h3> El codigo enviaod es: " + codigo + "</h3>");
+        } catch (NumberFormatException e){
+            out.println("<h3>El codigo no se envió, es nulo </h3>");
         }
         out.print("    </body>");
         out.print("</html>");
