@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @WebServlet("/form")
 public class FormServlet extends HttpServlet {
@@ -28,6 +30,30 @@ public class FormServlet extends HttpServlet {
         String idioma = req.getParameter("idioma");
         String habilitar = req.getParameter("habilitar");
         String secreto = req.getParameter("secreto");
+
+        List<String> errores = new ArrayList<>();
+
+        if(username == null || username.isBlank()){
+            errores.add("El username es requerido");
+        }
+        if(password == null || password.isBlank()){
+            errores.add("El password es requerido");
+        }
+        if(email == null || !email.contains("@")){
+            errores.add("El username es requerido");
+        }
+        if(pais == null || pais.isBlank()){
+            errores.add("El país es requerido");
+        }
+        if(lenguajes == null || lenguajes.length == 0){
+            errores.add("Almenos debe seleccionar una opcion");
+        }
+        if(roles == null || roles.length==0){
+            errores.add("Debe seleccionar almenos 1 rol");
+        }
+        if(idioma == null) {
+            errores.add("Seleccione un idioma");
+        }
 
         try (PrintWriter out = resp.getWriter()) {
 
