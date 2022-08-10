@@ -23,9 +23,7 @@
         <label for="email">Email</label>
         <div><input type="text" name="email" id="email"></div>
     </div>
-    <div>
-        <input type="submit" value="Enviar">
-    </div>
+
 
     <!-- Seleccion de una sola opción -->
     <div>
@@ -64,17 +62,22 @@
     <div>
         <label>Roles</label>
         <div>
-            <input type="checkbox" name="roles" id="ROLE_ADMIN">
+            <input type="checkbox" name="roles" value="ROLE_ADMIN">
             <label>Administrador</label>
         </div>
         <div>
-            <input type="checkbox" name="roles" id="ROLE_USER" checked>
+            <input type="checkbox" name="roles" value="ROLE_USER" checked>
             <label>Usuario</label>
         </div>
         <div>
-            <input type="checkbox" name="roles" id="ROLE_MODERATOR">
+            <input type="checkbox" name="roles" value="ROLE_MODERATOR">
             <label>Moderador</label>
         </div>
+    </div>
+
+
+    <div>
+        <input type="submit" value="Enviar">
     </div>
 
 </form>
