@@ -26,6 +26,8 @@
 
     <!-- Incluyendo Plugins para su trabajo -->
     <build>
+        <!--Indicando el nombre final de nuestro war -->
+        <finalName>web-app.form</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
