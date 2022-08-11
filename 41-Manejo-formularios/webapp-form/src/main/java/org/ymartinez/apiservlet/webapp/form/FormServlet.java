@@ -28,7 +28,9 @@ public class FormServlet extends HttpServlet {
         String[] roles = req.getParameterValues("roles");
 
         String idioma = req.getParameter("idioma");
-        String habilitar = req.getParameter("habilitar");
+        boolean habilitar = req.getParameter("habilitar") != null
+                && req.getParameter("habilitar").equals("on");
+
         String secreto = req.getParameter("secreto");
 
         List<String> errores = new ArrayList<>();
@@ -66,29 +68,37 @@ public class FormServlet extends HttpServlet {
             out.print("    <body>");
             out.print("        <h1>Resultado Form</h1>");
             out.print("        <ul>");
-            out.print("             <li>Username" + username + "</li>");
-            out.print("             <li>Password" + password + "</li>");
-            out.print("             <li>Email" + email + "</li>");
-            out.print("             <li>Email" + pais + "</li>");
-            out.print("             <li>Lenguajes: <ul>");
 
-            //Iterando el contenido
-            Arrays.asList(lenguajes).forEach(lenguaje ->{
-                out.println("          <li>" + lenguaje + "</li>");
-            });
-            out.print("             </ul></li>");
+            if(errores.isEmpty()) {
 
-            //Iterando el contenido
-            out.print("             <li>Roles: <ul>");
-            Arrays.asList(roles).forEach(role ->{
-                out.println("          <li>" + role + "</li>");
-            });
-            out.print("             </ul></li>");
+                out.print("             <li>Username" + username + "</li>");
+                out.print("             <li>Password" + password + "</li>");
+                out.print("             <li>Email" + email + "</li>");
+                out.print("             <li>Email" + pais + "</li>");
+                out.print("             <li>Lenguajes: <ul>");
 
-            out.print("             <li>Idioma " + idioma + "</li>");
-            out.print("             <li>Habilitar " + habilitar + "</li>");
-            out.print("             <li>Secreto " + secreto + "</li>");
+                //Iterando el contenido
+                Arrays.asList(lenguajes).forEach(lenguaje -> {
+                    out.println("          <li>" + lenguaje + "</li>");
+                });
+                out.print("             </ul></li>");
 
+                //Iterando el contenido
+                out.print("             <li>Roles: <ul>");
+                Arrays.asList(roles).forEach(role -> {
+                    out.println("          <li>" + role + "</li>");
+                });
+                out.print("             </ul></li>");
+
+                out.print("             <li>Idioma " + idioma + "</li>");
+                out.print("             <li>Habilitar " + habilitar + "</li>");
+                out.print("             <li>Secreto " + secreto + "</li>");
+            }else{
+                errores.forEach(error ->{
+                    out.println("<li>" + error + "</li>");
+                });
+                out.println("<p><a href=\"/webapp-form/index.html\"> Volver</a> </p>");
+            }
             out.print("        </ul>");
             out.print("    </body>");
             out.print("</html>");
