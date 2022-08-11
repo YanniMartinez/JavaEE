@@ -101,7 +101,7 @@ public class FormServlet extends HttpServlet {
                 /*errores.forEach(error ->{
                     out.println("<li>" + error + "</li>");
                 });
-                out.println("<p><a href=\"/webapp-form/index.html\"> Volver</a> </p>");
+                out.println("<p><a href=\"/webapp-form/index.jsp\"> Volver</a> </p>");
                 */
 
             //Estos atributos pueden mandarse entre JSP y servlets
