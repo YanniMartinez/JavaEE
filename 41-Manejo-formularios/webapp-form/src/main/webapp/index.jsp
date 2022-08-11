@@ -1,3 +1,14 @@
+<!-- Agregando directiva para el contenido JSP ->
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<@page import="java.util.List"%>
+
+<!-- Etiquetas para insertar código JAVA <% %> se le conoce como SCRIPTLET-->
+<%
+
+    List<String> errores = (List<String>)request.getAttribute("errores");
+    
+%>
+
 <!doctype html>
 <html lang="en">
 <head>
