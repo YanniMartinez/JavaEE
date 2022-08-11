@@ -35,41 +35,41 @@ public class FormServlet extends HttpServlet {
 
         List<String> errores = new ArrayList<>();
 
-        if(username == null || username.isBlank()){
+        if (username == null || username.isBlank()) {
             errores.add("El username es requerido");
         }
-        if(password == null || password.isBlank()){
+        if (password == null || password.isBlank()) {
             errores.add("El password es requerido");
         }
-        if(email == null || !email.contains("@")){
+        if (email == null || !email.contains("@")) {
             errores.add("El username es requerido");
         }
-        if(pais == null || pais.isBlank()){
+        if (pais == null || pais.isBlank()) {
             errores.add("El país es requerido");
         }
-        if(lenguajes == null || lenguajes.length == 0){
+        if (lenguajes == null || lenguajes.length == 0) {
             errores.add("Almenos debe seleccionar una opcion");
         }
-        if(roles == null || roles.length==0){
+        if (roles == null || roles.length == 0) {
             errores.add("Debe seleccionar almenos 1 rol");
         }
-        if(idioma == null) {
+        if (idioma == null) {
             errores.add("Seleccione un idioma");
         }
 
-        try (PrintWriter out = resp.getWriter()) {
+        if (errores.isEmpty()) {
+            try (PrintWriter out = resp.getWriter()) {
 
-            out.print("<!DOCTYPE html>");
-            out.print("<html>");
-            out.print("    <head>");
-            out.print("        <meta charset=\"UFT-8\">");
-            out.print("        <title>Resultado Form</title>");
-            out.print("    </head>");
-            out.print("    <body>");
-            out.print("        <h1>Resultado Form</h1>");
-            out.print("        <ul>");
+                out.print("<!DOCTYPE html>");
+                out.print("<html>");
+                out.print("    <head>");
+                out.print("        <meta charset=\"UFT-8\">");
+                out.print("        <title>Resultado Form</title>");
+                out.print("    </head>");
+                out.print("    <body>");
+                out.print("        <h1>Resultado Form</h1>");
+                out.print("        <ul>");
 
-            if(errores.isEmpty()) {
 
                 out.print("             <li>Username" + username + "</li>");
                 out.print("             <li>Password" + password + "</li>");
@@ -93,24 +93,25 @@ public class FormServlet extends HttpServlet {
                 out.print("             <li>Idioma " + idioma + "</li>");
                 out.print("             <li>Habilitar " + habilitar + "</li>");
                 out.print("             <li>Secreto " + secreto + "</li>");
-            }else{
+                out.print("        </ul>");
+                out.print("    </body>");
+                out.print("</html>");
+            }
+        } else {
                 /*errores.forEach(error ->{
                     out.println("<li>" + error + "</li>");
                 });
                 out.println("<p><a href=\"/webapp-form/index.html\"> Volver</a> </p>");
                 */
 
-                //Estos atributos pueden mandarse entre JSP y servlets
-                req.setAttribute("errores", errores);
+            //Estos atributos pueden mandarse entre JSP y servlets
+            req.setAttribute("errores", errores); //Mandamos errores al atributo
 
-                //Para redireccionar este JSP o vista debe estar dentro del request y usar el sig. elemento
-                getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-                //Reenombraremos el index para que acepte java
-                //Forward redirecciona al JSP
-            }
-            out.print("        </ul>");
-            out.print("    </body>");
-            out.print("</html>");
+            //Para redireccionar este JSP o vista debe estar dentro del request y usar el sig. elemento
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+            //Reenombraremos el index para que acepte java
+            //Forward redirecciona al JSP
         }
+
     }
 }
