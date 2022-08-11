@@ -6,7 +6,7 @@
 <%
 
     List<String> errores = (List<String>)request.getAttribute("errores");
-    
+
 %>
 
 <!doctype html>
@@ -18,6 +18,19 @@
 <body>
 
 <h3>Formulario de usuarios</h3>
+
+<%
+    if(errors != null && errores.size()>0 ){
+%>
+
+    <ul>
+        <% for(String error: errores){%>
+            <li> <%=error %>  </li>
+        <%}%>
+    </ul>
+
+<% } %>
+
 <!-- Apuntando a nuestro Servlet-->
 <form action="/webapp-form/form" method="post">
     <div>
