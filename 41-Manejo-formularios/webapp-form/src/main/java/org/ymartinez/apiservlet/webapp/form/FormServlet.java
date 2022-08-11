@@ -94,10 +94,19 @@ public class FormServlet extends HttpServlet {
                 out.print("             <li>Habilitar " + habilitar + "</li>");
                 out.print("             <li>Secreto " + secreto + "</li>");
             }else{
-                errores.forEach(error ->{
+                /*errores.forEach(error ->{
                     out.println("<li>" + error + "</li>");
                 });
                 out.println("<p><a href=\"/webapp-form/index.html\"> Volver</a> </p>");
+                */
+
+                //Estos atributos pueden mandarse entre JSP y servlets
+                req.setAttribute("errores", errores);
+
+                //Para redireccionar este JSP o vista debe estar dentro del request y usar el sig. elemento
+                getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+                //Reenombraremos el index para que acepte java
+                //Forward redirecciona al JSP
             }
             out.print("        </ul>");
             out.print("    </body>");
