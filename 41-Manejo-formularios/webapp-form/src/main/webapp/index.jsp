@@ -1,6 +1,6 @@
 <!-- Agregando directiva para el contenido JSP ->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 
 <!-- Etiquetas para insertar código JAVA <% %> se le conoce como SCRIPTLET-->
 <%
@@ -20,7 +20,7 @@
 <h3>Formulario de usuarios</h3>
 
 <%
-    if(errors != null && errores.size()>0 ){
+    if(errores != null && errores.size()>0 ){
 %>
 
     <ul>
