@@ -5,4 +5,6 @@ Ctl + Alt + l = Formato automático
 Alt + insert = Despliega opciones a insertar como Contructores, override
 Ctl + Alt + S = Despliega Settings
 Alt + Enter sobre una clase o interface = Permite la opción de implementar métodos, etc.
+Ctl + Space = Importar paquetes
+
 
