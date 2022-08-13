@@ -12,7 +12,8 @@ import java.io.IOException;
 public class RedirigirServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader("Location", req.getContextPath()+"/productos.html"); //Redireccionando
-        resp.setStatus(HttpServletResponse.SC_FOUND); //Estableciendo código 302
+        //resp.setHeader("Location", req.getContextPath()+"/productos.html"); //Redireccionando
+        //resp.setStatus(HttpServletResponse.SC_FOUND); //Estableciendo código 302
+        resp.sendRedirect(req.getContextPath()+"/productos.html"); //Equivalete de redirección
     }
 }
