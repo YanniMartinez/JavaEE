@@ -47,6 +47,7 @@ public class ProductoXlsServlet extends HttpServlet {
                 out.print("    <body>");
                 out.print("        <h1>Listado de Productos</h1>");
                 out.println("      <p>  <a href=\"" + req.getContextPath() + "/productos.xls" + "\"> Exportar a XLS </a> </p>");
+                out.println("      <p>  <a href=\"" + req.getContextPath() + "/productos.json" + "\">Mostrar JSON </a> </p>");
             }
 
             out.print("        <table>");
