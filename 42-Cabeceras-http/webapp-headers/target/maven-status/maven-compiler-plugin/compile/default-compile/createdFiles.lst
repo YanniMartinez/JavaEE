@@ -1,3 +1,4 @@
+org\ymartinezm\apiservlet\webapp\headers\controllers\ProductoJsonServlet.class
 org\ymartinezm\apiservlet\webapp\headers\controllers\ProductoXlsServlet.class
 org\ymartinezm\apiservlet\webapp\headers\models\Producto.class
 org\ymartinezm\apiservlet\webapp\headers\services\ProductoService.class
