@@ -1,4 +1,4 @@
-package org.ymartinezm.apiservlet.webapp.headers;
+package org.ymartinezm.apiservlet.webapp.headers.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
