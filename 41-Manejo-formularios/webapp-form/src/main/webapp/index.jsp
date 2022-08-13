@@ -127,7 +127,7 @@
         <div class="form-check col-sm-2">
             <input type="checkbox" name="roles" value="ROLE_USER"
             ${paramValues.roles.stream().anyMatch(v->v.equals("ROLE_USER")).get()?"checked":""}
-            checked class="form-check-input">
+             class="form-check-input">
             <label class="form-check-label">Usuario</label>
         </div>
         <div class="form-check col-sm-2">
