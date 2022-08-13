@@ -8,3 +8,7 @@ Alt + Enter sobre una clase o interface = Permite la opción de implementar mét
 Ctl + Space = Importar paquetes
 
 
+
+
+
+https://rubentejera.com/atajos-de-teclado-shortcuts-para-intellij-idea/
