@@ -24,7 +24,13 @@ public class BuscarProductoServlet extends HttpServlet {
 
         //El Filter lo que hace es buscar si se encontró el elemento, además recordemos que devuelve un opcional
         //En resumen, busca, por cada elemento obten el filtro y verifica si contienene el nombre que queremos, si si entonces devuelvelo
-        Optional<Producto> encontrado = service.listar().stream().filter(p -> p.getNombre().contains(nombre)).findFirst();
+        Optional<Producto> encontrado = service.listar().stream().filter(p -> {
+
+            if( nombre == null ||nombre.isBlank() ){ //Si el valor del nombre es vacio
+                return false;
+            }//Si tiene algo entonces evalua con el contains
+            return p.getNombre().contains(nombre);
+        }).findFirst();
 
         if(encontrado.isPresent()){ //Si lo encontró
 
