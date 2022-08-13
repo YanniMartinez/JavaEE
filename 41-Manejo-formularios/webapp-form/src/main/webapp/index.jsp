@@ -1,11 +1,11 @@
 <!-- Agregando directiva para el contenido JSP ->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 
 <!-- Etiquetas para insertar código JAVA <% %> se le conoce como SCRIPTLET-->
 <%
 
-    List<String> errores = (List<String>)request.getAttribute("errores");
+    Map<String,String> errores = (Map<String,String>)request.getAttribute("errores");
 
 %>
 
@@ -24,7 +24,7 @@
 %>
 
     <ul>
-        <% for(String error: errores){%>
+        <% for(String error: errores.values()){%>
             <li> <%=error %>  </li>
         <%}%>
     </ul>
@@ -36,16 +36,31 @@
     <div>
         <label for="username">Usuario</label>
         <div><input type="text" name="username" id="username"></div>
+        <%
+            if( errores != null && errores.containsKey("username")){
+                out.println("<small style='color:red;'>"+errores.get("username")+"</small>");
+            }
+        %>
     </div>
 
     <div>
         <label for="password">Password</label>
         <div><input type="password" name="password" id="password"></div>
+        <%
+            if( errores != null && errores.containsKey("password")){
+                out.println("<small style='color:red;'>"+errores.get("password")+"</small>");
+            }
+        %>
     </div>
 
     <div>
         <label for="email">Email</label>
         <div><input type="text" name="email" id="email"></div>
+        <%
+            if( errores != null && errores.containsKey("email")){
+                out.println("<small style='color:red;'>"+errores.get("email")+"</small>");
+            }
+        %>
     </div>
 
 
@@ -64,6 +79,11 @@
                 <option value="VE">Venezuela</option>
             </select>
         </div>
+        <%
+            if( errores != null && errores.containsKey("pais")){
+                out.println("<small style='color:red;'>"+errores.get("pais")+"</small>");
+            }
+        %>
     </div>
 
     <!-- Selección multiple-->
@@ -80,6 +100,11 @@
 
             </select>
         </div>
+        <%
+            if( errores != null && errores.containsKey("lenguajes")){
+                out.println("<small style='color:red;'>"+errores.get("lenguajes")+"</small>");
+            }
+        %>
     </div>
 
     <!-- Checkbox-->
@@ -97,6 +122,11 @@
             <input type="checkbox" name="roles" value="ROLE_MODERATOR">
             <label>Moderador</label>
         </div>
+        <%
+            if( errores != null && errores.containsKey("roles")){
+                out.println("<small style='color:red;'>"+errores.get("roles")+"</small>");
+            }
+        %>
     </div>
 
     <!-- Radio -->
@@ -114,6 +144,11 @@
             <input type="radio" name="idioma" value="en">
             <label>Frances</label>
         </div>
+        <%
+            if( errores != null && errores.containsKey("idioma")){
+                out.println("<small style='color:red;'>"+errores.get("idioma")+"</small>");
+            }
+        %>
     </div>
     
     <!-- Checkbox-->
