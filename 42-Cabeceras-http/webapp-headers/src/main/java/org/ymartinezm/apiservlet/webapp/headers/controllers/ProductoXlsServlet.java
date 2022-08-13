@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet({"/productos.xls","/productos.html"})
+@WebServlet({"/productos.xls","/productos.html","/productos"})
 public class ProductoXlsServlet extends HttpServlet {
 
     @Override
