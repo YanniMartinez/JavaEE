@@ -1,0 +1,6 @@
+Ctl + alt + v = Creación de variable basado en un método o algo
+Ctl + D = Duplica la línea o cadena seleccionada
+Alt + J = Busca coincidencias para modificación multiple
+Ctl + Alt + l = Formato automático
+Alt + insert = Despliega opciones a insertar como Contructores, override
+Ctl + Alt + S = Despliega Settings

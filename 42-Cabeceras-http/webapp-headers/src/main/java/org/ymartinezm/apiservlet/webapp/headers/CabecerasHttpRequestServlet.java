@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 @WebServlet("/cabeceras-request")
 public class CabecerasHttpRequestServlet extends HttpServlet{
@@ -56,6 +57,15 @@ public class CabecerasHttpRequestServlet extends HttpServlet{
             out.println("    <li>Host: "+ host+"</li>");
             out.println("    <li>URL1: "+ url+"</li>");
             out.println("    <li>URL2: "+ url2+"</li>");
+
+            //Obtiene todas las cabeceras:
+            Enumeration<String> headerNames = req.getHeaderNames();
+            while( headerNames.hasMoreElements()){
+                String cabecera = headerNames.nextElement(); //Cambiamos a la otra posición
+                out.println("<li>" + cabecera + " : " + req.getHeader(cabecera) + "</li>" ); //Obtiene el valor de la cabecera
+
+            }
+
             out.println("    </ul>");
             out.println("    </body>");
 
