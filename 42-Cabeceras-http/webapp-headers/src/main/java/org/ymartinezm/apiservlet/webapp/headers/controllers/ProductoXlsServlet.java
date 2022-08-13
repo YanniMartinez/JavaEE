@@ -24,16 +24,31 @@ public class ProductoXlsServlet extends HttpServlet {
         List<Producto> productos = service.listar(); //Obtenemos los productos
 
         resp.setContentType("text/html; charset=UTF-8");
+
+        //Obteniendo la URL:
+        String serverletPath = req.getServletPath();
+        boolean esXls = serverletPath.endsWith(".xls"); //Verifica si tiene terminación .xls
+
+        if(esXls){ //Definiendo para que se exporte a formato XLS
+            resp.setContentType("application/vnd.ms-excel"); //Establece respuesta tipo Excel
+            resp.setHeader("Context-Disposition","attachment;filename=productos.xls"); //Forzamos la descarga con ese nombre
+
+        }
+
         try (PrintWriter out = resp.getWriter()) {
 
-            out.print("<!DOCTYPE html>");
-            out.print("<html>");
-            out.print("    <head>");
-            out.print("        <meta charset=\"UFT-8\">");
-            out.print("        <title>Listado de Productos</title>");
-            out.print("    </head>");
-            out.print("    <body>");
-            out.print("        <h1>Listado de Productos</h1>");
+            if(!esXls) {
+                out.print("<!DOCTYPE html>");
+                out.print("<html>");
+                out.print("    <head>");
+                out.print("        <meta charset=\"UFT-8\">");
+                out.print("        <title>Listado de Productos</title>");
+                out.print("    </head>");
+                out.print("    <body>");
+                out.print("        <h1>Listado de Productos</h1>");
+                out.println("      <p>  <a href=\"" + req.getContextPath() + "/productos.xls" + "\"> Exportar a XLS </a> </p>");
+            }
+
             out.print("        <table>");
             out.print("             <tr>");
             out.print("                 <th>Id</th>");
@@ -53,8 +68,11 @@ public class ProductoXlsServlet extends HttpServlet {
             });
 
             out.print("        </table>");
-            out.print("    </body>");
-            out.print("</html>");
+
+            if(!esXls) {
+                out.print("    </body>");
+                out.print("</html>");
+            }
         }
 
     }
