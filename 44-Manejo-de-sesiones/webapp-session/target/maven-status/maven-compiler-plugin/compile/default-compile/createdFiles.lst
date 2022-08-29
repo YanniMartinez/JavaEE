@@ -1,0 +1,10 @@
+org\ymartinezm\apiservlet\webapp\headers\services\LoginService.class
+org\ymartinezm\apiservlet\webapp\headers\models\Producto.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\LoginServlet.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\ProductoServlet.class
+org\ymartinezm\apiservlet\webapp\headers\services\ProductoService.class
+org\ymartinezm\apiservlet\webapp\headers\services\ProductoServiceImpl.class
+org\ymartinezm\apiservlet\webapp\headers\services\LoginServiceImp.class
+org\ymartinezm\apiservlet\webapp\headers\services\LoginServiceSessionImp.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\LogoutServlet.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\RedirigirServlet.class

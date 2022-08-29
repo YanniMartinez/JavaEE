@@ -2,12 +2,10 @@ package org.ymartinezm.apiservlet.webapp.headers.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import org.ymartinezm.apiservlet.webapp.headers.services.LoginService;
 import org.ymartinezm.apiservlet.webapp.headers.services.LoginServiceImp;
+import org.ymartinezm.apiservlet.webapp.headers.services.LoginServiceSessionImp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,10 +20,10 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LoginService auth = new LoginServiceImp();
-        Optional<String> cookieOptional = auth.getUsername(req);
+        LoginService auth = new LoginServiceSessionImp();
+        Optional<String> usernameOptional = auth.getUsername(req);
 
-        if(cookieOptional.isPresent()){ //Si existe coookie no presenta login, sino contenido custom
+        if(usernameOptional.isPresent()){ //Si existe coookie no presenta login, sino contenido custom
 
             resp.setContentType("text/html; charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
@@ -34,10 +32,10 @@ public class LoginServlet extends HttpServlet {
                 out.println("<html>");
                 out.println("    <head>");
                 out.println("        <meta charset=\"UFT-8\">");
-                out.println("        <title>Hola" + cookieOptional.get()+"</title>");
+                out.println("        <title>Hola" + usernameOptional.get()+"</title>");
                 out.println("    </head>");
                 out.println("    <body>");
-                out.println("        <h1>Hola " + cookieOptional.get()+" has iniciado sesión anteriormente</h1>");
+                out.println("        <h1>Hola " + usernameOptional.get()+" has iniciado sesión anteriormente</h1>");
                 out.println("<p><a href='" + req.getContextPath() +"/index.html'>Volver  </a>  </div>");
                 out.println("<p><a href='" + req.getContextPath() +"/logout'>Cerrar session  </a>  </div>");
                 out.println("    </body>");
@@ -57,11 +55,8 @@ public class LoginServlet extends HttpServlet {
 
         if ( USERNAME.equals(username) && PASSWORD.equals(password)) {
 
-            //Forma de declarar una nueva cookie (Formato clave:Valor)
-            Cookie usernameCookie = new Cookie("username",username);
-
-            //Manando cookie en el response para que sea interpretada por el navegador
-            resp.addCookie(usernameCookie);
+            HttpSession session = req.getSession();
+            session.setAttribute("username",username);
 
             resp.sendRedirect(req.getContextPath()+"/login.html");
 
