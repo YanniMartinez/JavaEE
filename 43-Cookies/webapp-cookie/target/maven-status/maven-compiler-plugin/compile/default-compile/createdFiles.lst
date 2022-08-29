@@ -5,4 +5,5 @@ org\ymartinezm\apiservlet\webapp\headers\controllers\ProductoServlet.class
 org\ymartinezm\apiservlet\webapp\headers\services\ProductoService.class
 org\ymartinezm\apiservlet\webapp\headers\services\ProductoServiceImpl.class
 org\ymartinezm\apiservlet\webapp\headers\services\LoginServiceImp.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\LogoutServlet.class
 org\ymartinezm\apiservlet\webapp\headers\controllers\RedirigirServlet.class
