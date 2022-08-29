@@ -1,0 +1,6 @@
+org\ymartinezm\apiservlet\webapp\headers\models\Producto.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\LoginServlet.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\ProductoServlet.class
+org\ymartinezm\apiservlet\webapp\headers\services\ProductoService.class
+org\ymartinezm\apiservlet\webapp\headers\services\ProductoServiceImpl.class
+org\ymartinezm\apiservlet\webapp\headers\controllers\RedirigirServlet.class

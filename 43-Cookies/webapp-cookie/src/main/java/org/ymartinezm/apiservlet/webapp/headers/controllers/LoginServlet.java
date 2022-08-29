@@ -2,6 +2,7 @@ package org.ymartinezm.apiservlet.webapp.headers.controllers;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,6 +22,12 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if ( USERNAME.equals(username) && PASSWORD.equals(password)) {
+
+            //Forma de declarar una nueva cookie (Formato clave:Valor)
+            Cookie usernameCookie = new Cookie("username",username);
+
+            //Manando cookie en el response para que sea interpretada por el navegador
+            resp.addCookie(usernameCookie);
 
             resp.setContentType("text/html; charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
