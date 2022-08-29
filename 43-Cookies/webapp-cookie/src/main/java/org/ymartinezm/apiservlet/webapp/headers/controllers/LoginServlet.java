@@ -9,12 +9,45 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Optional;
 
-@WebServlet("/login")
+@WebServlet({"/login","/login.html"})
 public class LoginServlet extends HttpServlet {
 
     final static String USERNAME="admin";
     final static String PASSWORD="12345";
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Obteniendo Cookies, Si es diferente de nulo obtenemos las cookies, en caso contrario arreglo vacio
+        Cookie[] cookies = req.getCookies() != null ? req.getCookies(): new Cookie[0];
+
+        //Busca la cookie, y declaramos un opcional porque podria o no devolver un valor Cookie
+        Optional<Cookie> cookieOptional = Arrays.stream(cookies)
+                .filter(c -> "username".equals(c.getName())).findAny();
+        if(cookieOptional.isPresent()){ //Si existe coookie no presenta login, sino contenido custom
+
+            resp.setContentType("text/html; charset=UTF-8");
+            try (PrintWriter out = resp.getWriter()) {
+
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("    <head>");
+                out.println("        <meta charset=\"UFT-8\">");
+                out.println("        <title>Hola" + cookieOptional.get().getValue()+"</title>");
+                out.println("    </head>");
+                out.println("    <body>");
+                out.println("        <h1>Hola" + cookieOptional.get().getValue()+" ya has iniciado sesión anteriormente</h1>");
+                out.println("    </body>");
+                out.println("</html>");
+            }
+
+        }else { //No hay cookie PRESENTA login
+            //Estableciendo el Dispatcher para propagar info entre la JSP y el servlet
+            getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp); //Carga JSP
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
