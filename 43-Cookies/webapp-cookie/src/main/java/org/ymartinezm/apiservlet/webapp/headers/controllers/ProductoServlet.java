@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.ymartinezm.apiservlet.webapp.headers.models.Producto;
+import org.ymartinezm.apiservlet.webapp.headers.services.LoginService;
+import org.ymartinezm.apiservlet.webapp.headers.services.LoginServiceImp;
 import org.ymartinezm.apiservlet.webapp.headers.services.ProductoService;
 import org.ymartinezm.apiservlet.webapp.headers.services.ProductoServiceImpl;
 
@@ -26,14 +28,9 @@ public class ProductoServlet extends HttpServlet {
         ProductoService service = new ProductoServiceImpl();
         List<Producto> productos = service.listar(); //Obtenemos los productos
 
-        //Obteniendo Cookies, Si es diferente de nulo obtenemos las cookies, en caso contrario arreglo vacio
-        Cookie[] cookies = req.getCookies() != null ? req.getCookies(): new Cookie[0];
+        LoginService auth = new LoginServiceImp();
+        Optional<String> cookieOptional = auth.getUsername(req);
 
-        //Busca la cookie, y declaramos un opcional porque podria o no devolver un valor Cookie
-        Optional<String> cookieOptional = Arrays.stream(cookies)
-                .filter(c -> "username".equals(c.getName()))
-                .map(Cookie::getValue) //Mapea a string
-                .findAny();
 
         resp.setContentType("text/html; charset=UTF-8");
 

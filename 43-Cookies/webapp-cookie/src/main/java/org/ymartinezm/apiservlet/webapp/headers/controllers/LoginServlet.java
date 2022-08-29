@@ -6,6 +6,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.ymartinezm.apiservlet.webapp.headers.services.LoginService;
+import org.ymartinezm.apiservlet.webapp.headers.services.LoginServiceImp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,14 +22,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Obteniendo Cookies, Si es diferente de nulo obtenemos las cookies, en caso contrario arreglo vacio
-        Cookie[] cookies = req.getCookies() != null ? req.getCookies(): new Cookie[0];
+        LoginService auth = new LoginServiceImp();
+        Optional<String> cookieOptional = auth.getUsername(req);
 
-        //Busca la cookie, y declaramos un opcional porque podria o no devolver un valor Cookie
-        Optional<String> cookieOptional = Arrays.stream(cookies)
-                .filter(c -> "username".equals(c.getName()))
-                .map(Cookie::getValue) //Mapea a string
-                .findAny();
         if(cookieOptional.isPresent()){ //Si existe coookie no presenta login, sino contenido custom
 
             resp.setContentType("text/html; charset=UTF-8");
