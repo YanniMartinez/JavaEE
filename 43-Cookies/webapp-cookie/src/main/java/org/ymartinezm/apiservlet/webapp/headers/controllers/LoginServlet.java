@@ -24,8 +24,10 @@ public class LoginServlet extends HttpServlet {
         Cookie[] cookies = req.getCookies() != null ? req.getCookies(): new Cookie[0];
 
         //Busca la cookie, y declaramos un opcional porque podria o no devolver un valor Cookie
-        Optional<Cookie> cookieOptional = Arrays.stream(cookies)
-                .filter(c -> "username".equals(c.getName())).findAny();
+        Optional<String> cookieOptional = Arrays.stream(cookies)
+                .filter(c -> "username".equals(c.getName()))
+                .map(Cookie::getValue) //Mapea a string
+                .findAny();
         if(cookieOptional.isPresent()){ //Si existe coookie no presenta login, sino contenido custom
 
             resp.setContentType("text/html; charset=UTF-8");
@@ -35,10 +37,10 @@ public class LoginServlet extends HttpServlet {
                 out.println("<html>");
                 out.println("    <head>");
                 out.println("        <meta charset=\"UFT-8\">");
-                out.println("        <title>Hola" + cookieOptional.get().getValue()+"</title>");
+                out.println("        <title>Hola" + cookieOptional.get()+"</title>");
                 out.println("    </head>");
                 out.println("    <body>");
-                out.println("        <h1>Hola" + cookieOptional.get().getValue()+" ya has iniciado sesión anteriormente</h1>");
+                out.println("        <h1>Hola" + cookieOptional.get()+" ya has iniciado sesión anteriormente</h1>");
                 out.println("    </body>");
                 out.println("</html>");
             }
