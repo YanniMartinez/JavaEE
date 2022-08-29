@@ -58,6 +58,8 @@ public class CabecerasHttpRequestServlet extends HttpServlet{
             out.println("    <li>URL1: "+ url+"</li>");
             out.println("    <li>URL2: "+ url2+"</li>");
 
+
+            out.println("    <H3>Peticiones: </H3>");
             //Obtiene todas las cabeceras:
             Enumeration<String> headerNames = req.getHeaderNames();
             while( headerNames.hasMoreElements()){
