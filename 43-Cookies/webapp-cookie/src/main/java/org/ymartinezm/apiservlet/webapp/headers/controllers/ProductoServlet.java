@@ -46,11 +46,17 @@ public class ProductoServlet extends HttpServlet {
             out.print("    <body>");
             out.print("        <h1>Listado de Productos</h1>");
 
+            if(cookieOptional.isPresent()){
+                out.println("<div style='color:blue;'> Hola " + cookieOptional.get() +"</div>");
+            }
+
             out.print("        <table>");
             out.print("             <tr>");
             out.print("                 <th>Id</th>");
             out.print("                 <th>Nombre</th>");
-            out.print("                 <th>Tipo</th>");
+            if(cookieOptional.isPresent()) {
+                out.print("                 <th>Tipo</th>");
+            }
             out.print("                 <th>Precio</th>");
             out.print("             </tr>");
 
@@ -60,7 +66,9 @@ public class ProductoServlet extends HttpServlet {
                 out.print("             <td>" + p.getId() + "</td>");
                 out.print("             <td>" + p.getNombre() + "</td>");
                 out.print("             <td>" + p.getTipo() + "</td>");
-                out.print("             <td>" + p.getPrecio() + "</td>");
+                if(cookieOptional.isPresent()) {
+                    out.print("             <td>" + p.getPrecio() + "</td>");
+                }
                 out.print("             </tr>");
             });
 
